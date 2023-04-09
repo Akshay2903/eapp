@@ -1,11 +1,34 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Cart from './Cart';
+import {useState, useContext} from "react";
+import "./App.css";
+import Header, {NavBar} from "./Components/Header";
+import ProductList from "./Components/ProductList";
+import CartList from "./Components/CartList";
+import { Cart } from "./Components/CartContext";
 
-function App() {
+
+
+const App = ()  => {
+  const [showCart,setShowCart] = useState(false);
+
+  const { cart, addToCart} = useContext(Cart);
+
+  
+const handleShow = (value) => {
+  setShowCart(value)
+};
+
   return (
-    <Cart/>
+    <div>
+      <NavBar handleShow={handleShow}/>
+      <Header count={cart.length} handleShow={handleShow}/>
+      {
+        showCart ? 
+        <CartList/> :
+        <ProductList addToCart={addToCart}/>
+
+      }
+      
+    </div>
   );
 }
 
