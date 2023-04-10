@@ -1,33 +1,37 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Cart } from "./Components/CartContext";
-import About from "./Components/Pages/About";
-import Home from './Components/Pages/Home';
-import Header, {NavBar} from "./Components/Header";
-import ProductList from "./Components/ProductList";
-import CartList from "./Components/CartList";
-import {useState, useContext} from "react";
-import "./App.css";
+import React,{Fragment, useState} from "react";
 
-const App = () => {
-  const [showCart,setShowCart] = useState(false);
-  const { cart, addToCart} = useContext(Cart);
+import MovieList from './MoviePages/MoviesList';
+import './App.css';
 
-  const handleShow = (value) => {
-    setShowCart(value)
-  };
+function App(){
+    const [movies, setMovies]= useState([]);
 
-  return (
-    <BrowserRouter>
-      <NavBar handleShow={handleShow}/>
-      <Header count={cart.length} handleShow={handleShow}/>
-      <Routes>
-        <Route path="/" element={<ProductList addToCart={addToCart}/>} />
-        <Route path="/cart" element={<CartList/>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    function fetchMoviesHandler(){
+    fetch('https://swapi.dev/api/films/')
+    .then((response)=>{
+        return response.json();
+     })
+     .then ((data)=>{
+        const transformedMovies = data.results.map((movieData)=>{
+        return{
+            id:movieData.episode_id,
+            title: movieData.title,
+            openingText: movieData.opening_crawl,
+            releaseDate : movieData.release_Date
+        };
+     }) ;
+     setMovies(transformedMovies);
+});
 }
-
+return(
+<Fragment>
+    <section>
+        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+    </section>
+    <section>
+        <MovieList movies ={movies} />
+    </section>
+</Fragment>
+);
+}
 export default App;

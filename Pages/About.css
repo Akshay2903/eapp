@@ -1,0 +1,10 @@
+.img-about{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    float: left;
+    margin: 20px 50px;
+    border-radius: 50%;
+    width: 400px;
+    height: 400px; 
+  }
+  
