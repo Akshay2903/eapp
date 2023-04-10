@@ -1,34 +1,30 @@
-import {useState, useContext} from "react";
-import "./App.css";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Cart } from "./Components/CartContext";
+import About from "./Components/Pages/About";
 import Header, {NavBar} from "./Components/Header";
 import ProductList from "./Components/ProductList";
 import CartList from "./Components/CartList";
-import { Cart } from "./Components/CartContext";
+import {useState, useContext} from "react";
+import "./App.css";
 
-
-
-const App = ()  => {
+const App = () => {
   const [showCart,setShowCart] = useState(false);
-
   const { cart, addToCart} = useContext(Cart);
 
-  
-const handleShow = (value) => {
-  setShowCart(value)
-};
+  const handleShow = (value) => {
+    setShowCart(value)
+  };
 
   return (
-    <div>
+    <BrowserRouter>
       <NavBar handleShow={handleShow}/>
       <Header count={cart.length} handleShow={handleShow}/>
-      {
-        showCart ? 
-        <CartList/> :
-        <ProductList addToCart={addToCart}/>
-
-      }
-      
-    </div>
+      <Routes>
+        <Route path="/" element={<ProductList addToCart={addToCart}/>} />
+        <Route path="/cart" element={<CartList/>} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
