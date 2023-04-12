@@ -18,7 +18,7 @@ const ContactUs = ()  => {
     }
     console.log(data)
 
-     fetch('https://ecommerce-1f2e4-default-rtdb.firebaseio.com/contactInfo/contactInfo.json',{
+     fetch('https://ecommerce-29271-default-rtdb.firebaseio.com//contactInfo/contactInfo.json',{
       method:'POST',
       body:JSON.stringify(data),
       headers:{

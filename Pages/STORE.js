@@ -3,6 +3,7 @@ import CartContext from "../Component/Store/CartContext";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { productsArr } from "../ProductData/Data";
+import { Link } from "react-router-dom";
 
 const STORE = () => {
   const cartCtx = useContext(CartContext);
@@ -17,6 +18,13 @@ const STORE = () => {
   };
 return (
     <Fragment>
+       <p
+        className="display-5 text-center p-3 bg-secondary mt-1 text-white"
+        style={{ fontSize: "8em", fontFamily: "bold" }}
+      >
+        The Generics 
+        
+      </p>
       <h2 style={{ textAlign: "center" }}>Music</h2>
       <div style={{ display: "flex", justifyContent: "center" }}>
 
@@ -33,6 +41,7 @@ return (
                 {item.title}
             </Card.Title>
             
+            <Link to={`/product/${item.id}`}>
             <Card.Img variant="center"  src={item.imageUrl}
               style={{transition: "transform .3s", width: "100%", height: "100%",}}
                 onMouseOver={(e) => {
@@ -41,6 +50,8 @@ return (
                 onMouseOut={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
                 }}/>
+                </Link>
+
              <Card.Text style={{ float: "left", marginTop: "15px" }}>
                       ${item.price}
                     </Card.Text>
@@ -75,6 +86,7 @@ return (
                       {item.title}
                     </Card.Title>
 
+                    <Link to={`/product/${item.id}`}>
                     <Card.Img variant="center" src={item.imageUrl}
                       style={{transition: "transform .3s", width: "100%",height: "100%",}}
                       
@@ -85,6 +97,7 @@ return (
                         e.currentTarget.style.transform = "scale(1)";
                       }}
                     />
+                    </Link>
 
                     <Card.Text style={{ float: "left", marginTop: "15px" }}>
                       ${item.price}
