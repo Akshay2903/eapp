@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import Cart from "../Cart/Cart";
-import { BsCart3 } from "react-icons/bs";
+
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
