@@ -13,11 +13,8 @@ export const AuthContextProvider = (props) => {
   const [token, settoken] = useState(initialToken);
 
   const userIsLoggedIn = !!token; 
-  //if token is a string that is empty,it will return false
-  //if token is a string that is not empty,it will return true
 
-  //making functions for updating each state
-  const loginHandler = (token) => {
+   const loginHandler = (token) => {
     settoken(token);
     localStorage.setItem("token", token);
   };
