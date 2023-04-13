@@ -5,6 +5,8 @@ import { BsCart3,  } from "react-icons/bs";
 import CartContext from "../Store/CartContext";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../Store/AuthContext";
 
 const Header = (props) => {
   const [showCart, setShowCart] = useState(false);
@@ -16,7 +18,16 @@ const Header = (props) => {
     return curNumber + item.amount;
   }, 0);
 
+// Whenever the user who has not logged In clicks on the Products tab should be redirected to Login Page automatically.
+const authCtx = useContext(AuthContext);
+  const history = useNavigate();
+  const isLoggedIn = authCtx.isLoggedIn;
 
+  const logoutHandler = ()=> {
+    alert("Do you want Logout")
+     authCtx.Logout();
+    history('/login')
+  };
   const openCart = () => {          
     setShowCart(true);
   };
@@ -35,13 +46,12 @@ const Header = (props) => {
                HOME   
               </NavLink>
             </Nav.Item>
-
-            <Nav.Item
-              style={{marginRight: "40px", }}>
-              <NavLink to="/store" style={{ color: "white" }}>
-              STORE
-              </NavLink>
-            </Nav.Item>
+        
+            {isLoggedIn && <div style={{marginRight:'40px'}}>
+            <Link to="/store" style={{ color: "green" }} >
+            STORE
+            </Link>
+            </div>}
 
             <Nav.Item style={{ marginRight: "40px" }}>
               <NavLink to="/about" style={{ color: "white" }} onClick={() => props.handleShow(false)}>
@@ -53,13 +63,22 @@ const Header = (props) => {
               <NavLink to="/contactUs" style={{ color: "white" }}>
               ContactUs
                 </NavLink>
-                
-              </Nav.Item>
+               </Nav.Item>
+             
               <Nav.Item style={{ marginRight: "40px" }}>
-              <NavLink to="/auth" style={{ color: "white" }}>
-              LogIn
-                </NavLink>
+              <NavLink to="/auth" style={{ color: "yellow" }}
+              render={props =>
+              isLoggedIn ? (<NavLink {...props} />) : (<NavLink {...props} disabled />)}>
+              Login
+              </NavLink>
               </Nav.Item>
+
+              {isLoggedIn && <div style={{marginRight:'40px'}}>
+              <Link to="/auth" style={{ color: "red" }}  onClick={logoutHandler}>
+              Logout
+              </Link>
+              </div>}
+          
           </Nav>
         </Container>
         {location.pathname !== "/" &&

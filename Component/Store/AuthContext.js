@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-// import { useSubmit } from "react-router-dom";
+import React, { useState } from "react";
+//import { useSubmit, useEffect } from "react-router-dom";
 
 const AuthContext = React.createContext({
   token: "",
@@ -12,9 +12,10 @@ export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
 
   const [token, settoken] = useState(initialToken);
-  // const submit = useSubmit();
+  //const submit = useSubmit();
 
   const userIsLoggedIn = !!token; 
+  
   // useEffect(() => {
   //   if(!token){
   //     return;
@@ -23,7 +24,6 @@ export const AuthContextProvider = (props) => {
   //     submit(null,{action :'/logout', method:'post'});
   //   }, 5 * 60 * 1000); // 5 minutes in milliseconds
   // }, [token, submit]);
-
 
    const loginHandler = (token) => {
     settoken(token);
