@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+//useRef Hook allow to persist values between renders..used to store a mutable value.
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -18,7 +19,7 @@ const ContactUs = ()  => {
     }
     console.log(data)
 
-     fetch('https://ecommerce-29271-default-rtdb.firebaseio.com//contactInfo/contactInfo.json',{
+     fetch('https://ecommerce-29271-default-rtdb.firebaseio.com/contactInfo/contactInfo.json',{
       method:'POST',
       body:JSON.stringify(data),
       headers:{

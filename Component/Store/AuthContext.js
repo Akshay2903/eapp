@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-//import { useSubmit, useEffect } from "react-router-dom";
+import React, { useState,  } from "react";
+
 
 const AuthContext = React.createContext({
   token: "",
@@ -9,34 +9,41 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  const initialToken = localStorage.getItem("token");
-
-  const [token, settoken] = useState(initialToken);
-  //const submit = useSubmit();
-
+  
+  const [token, settoken] = useState('');
+  const [email, setEmail] = useState('');
+  
   const userIsLoggedIn = !!token; 
   
   // useEffect(() => {
-  //   if(!token){
-  //     return;
-  //   }
-  //   setTimeout(() => {
-  //     submit(null,{action :'/logout', method:'post'});
-  //   }, 5 * 60 * 1000); // 5 minutes in milliseconds
-  // }, [token, submit]);
+    
+  //   const initialToken = localStorage.getItem("token");
+  //   const initialEmail = localStorage.getItem("email");
+   
+  //  if (initialToken && initialEmail){
+  //   settoken(initialToken)
+  //   setEmail(initialEmail)
+  //  }
+  // }, []);
 
-   const loginHandler = (token) => {
+   const loginHandler = (token,email) => {
     settoken(token);
+    setEmail(email);
     localStorage.setItem("token", token);
+    localStorage.setItem("email", email);
+
   };
 
   const logoutHandler = () => {
     settoken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
+
   };
 
   const contextValue = {
     token: token,
+    email: email,
     isLoggedIn: userIsLoggedIn,
     Login: loginHandler,
     Logout: logoutHandler,

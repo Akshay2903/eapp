@@ -1,4 +1,4 @@
-import CartProvider from "./Component/Store/CartProvider";
+import CartProvider from './Component/Cart/CartProvider';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from "./Component/Layout/Header";

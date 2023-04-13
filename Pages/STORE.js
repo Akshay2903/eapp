@@ -1,21 +1,37 @@
 import {Fragment, useContext} from "react";
-import CartContext from "../Component/Store/CartContext";
+import CartContext from "../Component/Cart/CartContext";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { productsArr } from "../ProductData/Data";
 import { Link } from "react-router-dom";
+import AuthContext from "../Component/Store/AuthContext";
 
 const STORE = () => {
   const cartCtx = useContext(CartContext);
-  const addToCartHandler = (item) => {
+  const authCtx = useContext(AuthContext);
+  const addToCartHandler = async(item) => {
     cartCtx.addItem({
       id: item.id,
       imageUrl: item.imageUrl,
       title: item.title,
       price: item.price,
       amount: 1,
-    });
+    });  
+    console.log(item);
+    const response = await fetch(
+      `https://ecommerce-29271-default-rtdb.firebaseio.com//ProductData/${authCtx.email}.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+      );
+    const data = await response.json();
+    console.log(data);
   };
+
 return (
     <Fragment>
        <p

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
-import CartContext from "../Store/CartContext";
+import CartContext from "./CartContext";
 
 const CartItem = (props) => {
   const { updateQuantity } = useContext(CartContext);
