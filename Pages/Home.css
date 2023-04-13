@@ -41,6 +41,7 @@ button:hover{
     background-color: #1e293b;
     border-color: #1e293b;
     color: white;
+    text-decoration: underline;
   }
 
   @media only screen and (max-width: 1000px) {

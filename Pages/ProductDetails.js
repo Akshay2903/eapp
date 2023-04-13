@@ -6,9 +6,11 @@ import { Fragment } from "react";
 
 const ProductDetails = () => {
   const { productId } = useParams();
+ //params in key, value pair we destrcuring and get key only
 
   const [selectedProduct, setSelectedProduct] = useState(
     productsArr.find((item) => item.id === productId) || { imageUrl: [] }
+     //here array so, for finding that perticular image we use find
   );
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 

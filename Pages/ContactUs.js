@@ -4,12 +4,12 @@ import Form from 'react-bootstrap/Form';
 
 
 const ContactUs = ()  => {
-  const nameRef=useRef('')
-  const emailRef=useRef('')
-  const numberRef=useRef('')
+  const nameRef=useRef();
+  const emailRef=useRef();
+  const numberRef=useRef();
   
-  const submitHandler =(e)=>{
-    e.preventDefault()
+  const submitHandler =(event)=>{
+    event.preventDefault();
     const data = {
       name:nameRef.current.value,
       email:emailRef.current.value,
@@ -28,7 +28,7 @@ const ContactUs = ()  => {
 
     nameRef.current.value='';
     emailRef.current.value='';
-    numberRef.current.value = '';
+    numberRef.current.value = ''; 
 
   }
 

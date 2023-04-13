@@ -1,32 +1,36 @@
-import { Route } from 'react-router-dom';
-import Layout from './AuthComponents/Layout/Layout';
-import UserProfile from './AuthComponents/Profile/UserProfile';
-import AuthPage from './Authpages/AuthPage';
-import HomePage from './Authpages/HomePage';
-import AuthForm from "./AuthComponents/Auth/AuthForm";
-import { AuthContextProvider } from './Component/Store/AuthContext';
+import CartProvider from "./Component/Store/CartProvider";
+import { Routes, Route } from 'react-router-dom';
 
+import Header from "./Component/Layout/Header";
+import Footer from "./Component/Layout/Footer";
+
+import HOME from "./Pages/Home";
+import ABOUT from "./Pages/About";
+import STORE from "./Pages/STORE";
+import ContactUs from "./Pages/ContactUs";
+import ProductDetails from './Pages/ProductDetails';
+
+import AuthForm from "./Component/Auth/AuthForm";
 
 function App() {
   return (
-    <AuthForm>
-      <AuthContextProvider>
-      <Layout>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='/auth'>
-          <AuthPage />
-        </Route>
-        <Route path='/profile'>
-          <UserProfile />
-        </Route>
-      
-    </Layout>
-    </AuthContextProvider>
-    </AuthForm>
-
-  );
-}
+    <CartProvider>
+          <Header />
+            
+            <Routes>
+              <Route path="/home" element={<HOME/>} />
+              <Route path="/store" element={<STORE/>} />
+    
+              <Route path="/product/:productId" element={<ProductDetails />} />
+    
+              <Route path="/about" element={<ABOUT/>} />
+              <Route path="/contactUs" element={<ContactUs/>}/>
+              <Route path="/auth" element={<AuthForm />} />
+            </Routes>
+    
+            <Footer />
+     </CartProvider> 
+      );
+    };
 
 export default App;

@@ -1,11 +1,17 @@
-import React,{Fragment} from 'react';
+import {Fragment} from 'react';
 import Music_Image from "../Picture/Music_Image.jpg";
 import './About.css';
-
 
  function About () {
   return (
     <Fragment>
+       <p
+        className="display-5 text-center p-3 bg-secondary mt-1 text-white"
+        style={{ fontSize: "8em", fontFamily: "bold" }}
+      >
+        The Generics 
+        
+      </p>
      <h2 style={{ textAlign: "center" }}><i>About</i></h2>
      
       <div className="img-content">
@@ -14,7 +20,8 @@ import './About.css';
 
       <img src={Music_Image} alt="A music Img"/>
       </div>
-        <div>
+        
+          <p className="main-hero-para"  >
           Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
           sorrows, hates no prosecutors will unfold in the enduring of which
           were born in it? Often leads smallest mistake some pain main
@@ -36,8 +43,8 @@ import './About.css';
           often one of us, however, have any! Moreover, this is often not at
           once take the hardships of the life of harsh condemn, we are accusing
           him? Him whom something large cisterns.
-        </div>
-      </div>
+          </p>
+      </div> 
     </Fragment>
   )
 }

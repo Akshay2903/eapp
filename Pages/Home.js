@@ -1,13 +1,20 @@
 import React, { Fragment } from "react";
 //import {Link} from 'react-router-dom';
 import './Home.css';
+import {BsPlayCircle} from "react-icons/bs";
 
 function Home() {
   return (
     <Fragment>
-        {/* <h6><p>
-        Go to <Link to ="#">Store</Link>
-        </p></h6> */}
+     <p
+        className="display-5 text-center p-3 bg-secondary mt-1 text-white"
+        style={{ fontSize: "8em", fontFamily: "bold" }}
+      >
+        The Generics 
+        <br />
+        <BsPlayCircle />
+        </p>
+       
         <div className='home-page'>
             <h1>Tours</h1>
             <div>
